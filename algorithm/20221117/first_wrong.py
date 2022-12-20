@@ -28,6 +28,7 @@
 # The isBadVersion API is already defined for you.
 # def isBadVersion(version: int) -> bool:
 def isBadVersion(input):
+    """这个是本地测试用的 具体的需要在在线ide中跑"""
     if input in[3]:
         return 1
     else: return 0

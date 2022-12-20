@@ -1,4 +1,5 @@
 """
+二分查找
 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target,如果目标值存在返回下标，否则返回 -1。
 
 
@@ -46,3 +47,14 @@ if __name__ == "__main__":
     nums = [-1,0,3,5,9,12]
     target = 2
     print(s.search(nums,target))
+
+
+
+doubles = [4.8,w1,w2,w3,w4]
+double1 = [x1,x2,x3,x4]
+res = 0.0
+for i in range(0,len(doubles) -1):
+    if i == 0:
+        res += doubles[i]
+    else:
+        res += doubles[i] * double1[i-1]
