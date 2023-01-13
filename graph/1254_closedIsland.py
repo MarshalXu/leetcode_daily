@@ -6,8 +6,9 @@
 # @software: vscode
 # @author: xuchang0514@sina.com
 '''
-#lib moduls:
-import os,sys
+# lib moduls:
+import os, sys
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from typing import List
 
@@ -42,21 +43,20 @@ from typing import List
 
 class Solution:
 
-    def __judge(self,r,c):
+    def __judge(self, r, c):
 
-        mr,mc = len(self.grid),len(self.grid[0])
+        mr, mc = len(self.grid), len(self.grid[0])
 
-        if r == 0 or c == 0 or r == mr-1 or c == mc - 1: #如果在边界上
-            self.no_edge_flag = False 
+        if r == 0 or c == 0 or r == mr - 1 or c == mc - 1:  # 如果在边界上
+            self.no_edge_flag = False
 
-        self.grid[r][c] = 2 #set成2
-        
-        for r,c in [(r+1,c),(r-1,c),(r,c+1),(r,c-1)]:
-            if  0 <= r < mr and 0 <= c < mc and self.grid[r][c] == 0:
-                self.__judge(r,c)
+        self.grid[r][c] = 2  # set成2
 
+        for r, c in [(r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)]:
+            if 0 <= r < mr and 0 <= c < mc and self.grid[r][c] == 0:
+                self.__judge(r, c)
 
-    def closedIsland(self, grid: List[List[int]]) -> int: 
+    def closedIsland(self, grid: List[List[int]]) -> int:
 
         mr = len(grid)
         if mr == 0:
@@ -68,23 +68,24 @@ class Solution:
         for r in range(mr):
             for c in range(mc):
 
-                if self.grid[r][c] == 0: #是陆地
+                if self.grid[r][c] == 0:  # 是陆地
 
                     self.no_edge_flag = True
 
-                    self.__judge(r,c)
+                    self.__judge(r, c)
 
                     if self.no_edge_flag:
                         num += 1
 
         return num
 
+
 g = [
-    [1,1,1,1,1,1,1,0],
-    [1,0,0,0,0,1,1,0],
-    [1,0,1,0,1,1,1,0],
-    [1,0,0,0,0,1,0,1],
-    [1,1,1,1,1,1,1,0]]
+    [1, 1, 1, 1, 1, 1, 1, 0],
+    [1, 0, 0, 0, 0, 1, 1, 0],
+    [1, 0, 1, 0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 0]]
 
 s = Solution()
 

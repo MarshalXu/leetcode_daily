@@ -33,7 +33,7 @@
 # 提示：
 
 # m == heights.length
-# n == heights[r].length
+# n == heights[r].length 
 # 1 <= m, n <= 200
 # 0 <= heights[r][c] <= 105
 
@@ -43,7 +43,7 @@
 
 import os,sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from typing import List
+from typing import List,Tuple,Set
 
 class Solution:
     
@@ -119,3 +119,25 @@ heights = [
 s = Solution()
 [[10,10,10],[10,1,10],[10,10,10]]
 print(s.pacificAtlantic(heights))
+
+
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        m, n = len(heights), len(heights[0])
+
+        def search(starts: List[Tuple[int, int]]) -> Set[Tuple[int, int]]:
+            visited = set()
+            def dfs(x: int, y: int):
+                if (x, y) in visited:
+                    return
+                visited.add((x, y))
+                for nx, ny in ((x, y + 1), (x, y - 1), (x - 1, y), (x + 1, y)):
+                    if 0 <= nx < m and 0 <= ny < n and heights[nx][ny] >= heights[x][y]:
+                        dfs(nx, ny)
+            for x, y in starts:
+                dfs(x, y)
+            return visited
+
+        pacific = [(0, i) for i in range(n)] + [(i, 0) for i in range(1, m)]
+        atlantic = [(m - 1, i) for i in range(n)] + [(i, n - 1) for i in range(m - 1)]
+        return list(map(list, search(pacific) & search(atlantic)))
